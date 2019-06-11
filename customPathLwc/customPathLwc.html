@@ -1,0 +1,42 @@
+<template>
+	<div class="slds-card__body slds-card__body_inner">
+		<div class="slds-path">
+			<div class="slds-grid slds-path__track">
+				<div class="slds-grid slds-path__scroller-container">
+					<div class="slds-path__scroller" role="application">
+						<div class="slds-path__scroller_inner">
+							<ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+								<template if:true={picklistValues}>
+									<template for:each={picklistValues} for:item="item">
+										
+										<li data-value={item.pItem.value} onclick={handleSelect} key={item} class={item.classList} role="presentation">
+											<a data-value={item.pItem.value} onclick={handleSelect} aria-selected="true" class="slds-path__link" href="javascript:void(0);" id={item.pItem.value} role="option"
+												tabindex="0">
+												<span class="slds-path__stage">
+													<lightning-icon icon-name="utility:check" alternative-text="Warning!" variant="inverse" size="x-small"></lightning-icon>
+													<span class="slds-assistive-text">Current Stage:</span>
+												</span>
+												<span class="slds-path__title">{item.pItem.label}</span>
+											</a>
+										</li>
+										
+									</template>
+								</template>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="slds-grid slds-path__action">
+					<span class="slds-path__stage-name">Stage: Unqualified</span>
+					<button class="slds-button slds-button_brand slds-path__mark-complete" onclick={handleMarkAsSelected}>
+						<lightning-icon icon-name="utility:check" alternative-text="Warning!" variant="inverse" size="x-small"></lightning-icon> &nbsp;
+						Mark Status as Complete
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<template if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading" variant="inverse"></lightning-spinner>
+    </template>
+</template>
